@@ -12,7 +12,7 @@ Here are some common C++ utilities that I frequently use in my projects. They in
 std::filesystem::path logFilePath = "logs/wofares_game_engine.log";
 spdlog::level::level_enum logLevel = spdlog::level::trace;
 utils::Logger::Init(logFilePath, logLevel);
-MY_LOG(trace, "Player {} changed weapon to {}", playerInfo.number, playerInfo.currentWeapon);
+MY_LOG(trace, "Player {} changed weapon to {}", playerNumber, playerWeapon);
 ```
 
 ### Macros to format to std::string
@@ -40,9 +40,9 @@ MY_FMT("{:.2f}/{:.2f} (Gr/Sc)", gravity, cameraScale);
 
 ```cpp
 std::filesystem::path configFilePath = "config.json";
-utils::Config::InitInstanceFromFile(configFilePath);                                // <=== Setup the config file
+utils::Config::InitInstanceFromFile(configFilePath);            // <=== Setup the config file
 
-const Uint32 frameDelayMs = 1000 / utils::GetConfig<unsigned, "main.webFps">();     // <=== Read one value from json
+auto webFps = utils::GetConfig<unsigned, "main.webFps">();      // <=== Read one value from json
 
 struct GameOptions
 {
@@ -51,7 +51,7 @@ struct GameOptions
     // ...
     NLOHMANN_DEFINE_TYPE_INTRUSIVE(GameOptions, windowOptions)
 };
-auto gameOptions = utils::GetConfig<GameOptions>("GameOptions");                    // <=== Read a struct from json
+auto gameOpts = utils::GetConfig<GameOptions>("GameOptions");   // <=== Read a struct from json
 
 ```
 
