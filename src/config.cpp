@@ -17,12 +17,12 @@ JsonLoader& GetSingletoneInstance()
 void Config::InitInstanceFromString(const std::string& jsonSourceAsString)
 {
     GetSingletoneInstance().LoadFromString(jsonSourceAsString);
-};
+}
 
 void Config::InitInstanceFromFile(const std::filesystem::path& jsonFilePath)
 {
     GetSingletoneInstance().LoadFromFile(jsonFilePath);
-};
+}
 
 nlohmann::json& Config::GetInstance()
 {
@@ -31,10 +31,10 @@ nlohmann::json& Config::GetInstance()
         throw std::runtime_error("Config is not initialized. Use initInstanceFromFile() or initInstanceFromString()");
 
     return jsonLoader.Root();
-};
+}
 
 void Config::Save()
 {
     GetSingletoneInstance().SaveToSameFile();
-};
+}
 } // namespace utils

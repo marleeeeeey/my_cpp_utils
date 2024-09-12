@@ -8,6 +8,12 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Generate compile_commands.json.
 
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    add_compile_options(
+        -Wall -Wextra -Werror -Wpedantic -Wdeprecated -Wextra-semi -Wimplicit-fallthrough -Wconversion
+    )
+endif()
+
 # ###################################################################
 # ############### Searching some packages in system #################
 # ###################################################################
